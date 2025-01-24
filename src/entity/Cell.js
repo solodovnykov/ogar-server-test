@@ -45,7 +45,14 @@ class Cell {
             if (this.radius >= 250 && prey.radius <= 41 && prey.type == 0)
                 prey._radius2 = 0; // Can't grow from players under 17 mass
         }
-        return this.setSize(Math.sqrt(this._radius2 + prey._radius2));
+        if (prey.type == 4) {
+            const maxRadius = this.server.config.playerMaxSize;
+            const newRadius = Math.sqrt(this._radius2 * 2);
+
+            return this.setSize(Math.min(newRadius, maxRadius));
+        } else {
+            return this.setSize(Math.sqrt(this._radius2 + prey._radius2));
+        }
     }
     // Boost cell
     setBoost(distance, angle) {

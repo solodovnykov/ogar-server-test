@@ -100,6 +100,10 @@ module.exports = Object.seal({
 "foodAmount": 700,
 "foodMassGrow": 1,
 
+// [FOOD]
+// superFoodAmountPercentage: the relative amount of superfoods to regular food in percentage terms
+"superFoodAmountPercentage": 10,
+
 // [VIRUSES]
 // virusMinSize: Minimum virus size. (vanilla: mass: val*val/100: 100 mass)
 // virusMaxSize: Maximum virus size (vanilla: mass: val*val/100: 200 mass)

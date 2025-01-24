@@ -100,7 +100,9 @@ class Server {
         if (this.config.serverStatsPort > 0) {
             this.startStatsServer(this.config.serverStatsPort);
         }
-        this.spawnCells(this.config.virusAmount, this.config.foodAmount);
+        // 3% super food from all food on the map
+        const superFoodAmount = Math.floor(this.config.foodAmount * (this.config.superFoodAmountPercentage / 100));
+        this.spawnCells(this.config.virusAmount, this.config.foodAmount, superFoodAmount);
     }
     onHttpServerOpen() {
         // Start Main Loop
@@ -245,7 +247,9 @@ class Server {
         this.startTime = now.getTime();
         this.setBorder(this.config.borderWidth, this.config.borderHeight);
         this.quadTree = new QuadNode(this.border, 64, 32);
-        this.spawnCells(this.config.virusAmount, this.config.foodAmount);
+        // 3% super food from all food on the map
+        const superFoodAmount = Math.floor(this.config.foodAmount * (this.config.superFoodAmountPercentage / 100));
+        this.spawnCells(this.config.virusAmount, this.config.foodAmount, superFoodAmount);
         const date = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`
         const time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
         Logger.info(`Restarted ${date} ${time}`);
@@ -693,12 +697,20 @@ class Server {
         this.safeSpawn(virus);
 
     }
-    spawnCells(virusCount, foodCount) {
+    spawnSuperFood() {
+        var superFood = new Entity.SuperFood(this, null, this.randomPos(), this.config.foodMinSize);
+        superFood.setSize(20);
+        this.addNode(superFood);
+    }
+    spawnCells(virusCount, foodCount, superFoodCount) {
         for (var i = 0; i < foodCount; i++) {
             this.spawnFood();
         }
         for (var ii = 0; ii < virusCount; ii++) {
             this.spawnVirus();
+        }
+        for (var iii = 0; iii < superFoodCount; iii++) {
+            this.spawnSuperFood();
         }
     }
     spawnPlayer(player, pos) {
