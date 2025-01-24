@@ -700,6 +700,7 @@ class Server {
     spawnSuperFood() {
         var superFood = new Entity.SuperFood(this, null, this.randomPos(), this.config.foodMinSize);
         superFood.setSize(20);
+        superFood.type = 4;
         this.addNode(superFood);
     }
     spawnCells(virusCount, foodCount, superFoodCount) {
