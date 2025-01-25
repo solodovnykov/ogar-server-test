@@ -53,7 +53,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             writer.writeUInt8(flags >>> 0); // Flags
             writer.writeUInt16(0); // Name
         }
@@ -84,7 +84,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             writer.writeUInt8(flags >>> 0); // Flags
             if (cellName != null)
                 writer.writeBytes(cellName); // Name
@@ -121,7 +121,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             writer.writeUInt8(flags >>> 0); // Flags
             writer.writeUInt16(0); // Cell Name
         }
@@ -156,7 +156,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             writer.writeUInt8(flags >>> 0); // Flags
             if (flags & 0x04)
                 writer.writeBytes(skinName); // Skin Name in UTF8
@@ -193,7 +193,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             writer.writeUInt8(flags >>> 0); // Flags
             if (flags & 0x02) {
                 var color = node.color;
@@ -233,7 +233,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             writer.writeUInt8(flags >>> 0); // Flags
             if (flags & 0x02) {
                 var color = node.color;
@@ -274,7 +274,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             if (node.type == 1)
                 flags |= 0x80; // isFood
             writer.writeUInt8(flags >>> 0); // Flags
@@ -318,7 +318,7 @@ class UpdateNodes {
             if (node.type == 3)
                 flags |= 0x20; // isEjected
             if (node.type == 4)
-                flags |= 0x100;
+                flags |= 0x40;
             if (node.type == 1)
                 flags |= 0x80; // isFood
             writer.writeUInt8(flags >>> 0); // Flags
